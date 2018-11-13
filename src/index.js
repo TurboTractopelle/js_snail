@@ -19,20 +19,39 @@ function snail() {
     if (secure > 0) {
       if (arr[i + 1] === undefined) {
         console.log(arr[i][j]);
-        goLeft(i - 1, j, secure);
+        goLeft(i, j, --secure);
       } else {
         console.log(arr[i][j]);
-        goDown(2, j, --secure);
+        goDown(i + 1, j, --secure);
       }
     }
   };
 
   const goLeft = (i, j, secure) => {
     if (secure > 0) {
+      if (arr[i][j - 1] === undefined) {
+        console.log(arr[i][j]);
+        goUp(i - 1, j, --secure);
+      } else {
+        console.log(arr[i][j]);
+        goLeft(i, j - 1, --secure);
+      }
     }
   };
 
-  goRight(0, 0, 10);
+  const goUp = (i, j, secure) => {
+    if (secure > 0) {
+      if (arr[i - 1][j] === undefined) {
+        console.log(arr[i][j]);
+        goRight(i, j, --secure);
+      } else {
+        console.log(arr[i][j]);
+        goLeft(i - 1, j, --secure);
+      }
+    }
+  };
+
+  goRight(0, 0, 15);
 }
 
 console.log(snail(arr));
