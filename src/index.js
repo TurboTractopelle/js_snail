@@ -22,8 +22,6 @@ function snail() {
   const goDown = (i, j, secure) => {
     if (secure > 0) {
       if (arr[i + 1] === undefined) {
-        out.push(arr[i][j]);
-        console.log(out);
         goLeft(i, j, --secure);
       } else {
         out.push(arr[i][j]);
@@ -50,18 +48,22 @@ function snail() {
   const goUp = (i, j, secure) => {
     if (secure > 0) {
       if (arr[i - 1] === undefined) {
-        out.push(arr[i][j]);
-        console.log(out);
-        goRight(i, j, --secure);
+        if (out.includes(arr[i][j])) {
+          goRight(i + 1, j + 1, --secure);
+        } else {
+          out.push(arr[i][j]);
+          console.log(out);
+          goRight(i, j, --secure);
+        }
       } else {
         out.push(arr[i][j]);
         console.log(out);
-        goRight(i - 1, j, --secure);
+        goUp(i - 1, j, --secure);
       }
     }
   };
 
-  goRight(0, 0, 15);
+  goRight(0, 0, 10);
 }
 
 console.log(snail(arr));
