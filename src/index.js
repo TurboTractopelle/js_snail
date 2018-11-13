@@ -41,12 +41,12 @@ function snail() {
 
   const goUp = (i, j, secure) => {
     if (secure > 0) {
-      if (arr[i - 1][j] === undefined) {
+      if (arr[i - 1] === undefined) {
         console.log(arr[i][j]);
         goRight(i, j, --secure);
       } else {
         console.log(arr[i][j]);
-        goLeft(i - 1, j, --secure);
+        goRight(i - 1, j, --secure);
       }
     }
   };
