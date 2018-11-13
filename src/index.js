@@ -5,6 +5,8 @@ let arr = [[1, 2, 3], [8, 9, 4], [7, 6, 5]];
 function snail(arr) {
   let out = [];
 
+  console.log(arr);
+
   const goRight = (i, j, secure) => {
     if (secure > 0) {
       if (arr[i][j + 1] === undefined) {
@@ -74,9 +76,13 @@ function snail(arr) {
       }
     }
   };
-
-  goRight(0, 0, arr.length * arr[0].length + 1);
-  return out;
+  console.log(arr.length);
+  if (arr.length > 1) {
+    goRight(0, 0, arr.length * arr[0].length + 1);
+    return out;
+  } else {
+    return arr[0];
+  }
 }
 
-console.log(snail(arr));
+console.log(snail([[1]]));
